@@ -15,6 +15,18 @@ group :assets do
   gem 'uglifier'
 end
 
+group :test, :development do
+  gem 'rspec-rails'
+end
+
+group :test do
+  gem 'kameleon'
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'spork', '~> 1.0rc'
+  gem 'database_cleaner'
+end
+
 gem 'jquery-rails'
 gem 'therubyracer'
 
