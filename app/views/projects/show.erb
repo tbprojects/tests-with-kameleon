@@ -1,0 +1,19 @@
+<h2><%= @project.name %></h2>
+<p>Project is managed by: <%= mail_to @project.manager.email %></p>
+
+<%= link_to "New task", new_project_task_path(@project) %>
+
+<h3>Task list</h3>
+<table>
+	<thead>
+		<tr>
+			<th>Task name</th>
+			<th>Delegated to</th>
+            <th>Priority</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<%= render :partial => 'task', :collection => @project.tasks %>
+	</tbody>
+</table>

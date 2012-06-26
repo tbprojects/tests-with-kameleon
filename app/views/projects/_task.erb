@@ -1,0 +1,11 @@
+<tr>
+	<td><%= link_to task.name, project_task_path(@project, task) %></td>
+	<td><%= task.user.email %></td>
+    <td><%= task.priority %></td>
+	<td>
+      <% if task.can_be_managed_by?(current_user) %>
+		<%= link_to "Edit", edit_project_task_path(@project, task) %>
+		<%= link_to "Remove", project_task_path(@project, task), :method => "DELETE", :confirm => "Are you sure?" %>
+      <% end %>
+	</td>
+</tr>

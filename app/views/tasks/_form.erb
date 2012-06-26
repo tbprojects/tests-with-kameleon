@@ -1,0 +1,9 @@
+<%= semantic_form_for [@project, @task] do |form| %>
+    <%= form.inputs do %>
+        <%= form.input :name %>
+        <%= form.input :user, :collection => User.all.map{|u|[u.email, u.id]} %>
+        <%= form.input :priority, :as => :radio, :collection => Task::PRIORITY_LIST %>
+        <%= form.input :description %>
+    <% end %>
+    <%= form.actions %>
+<% end %>

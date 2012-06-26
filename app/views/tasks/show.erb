@@ -1,0 +1,6 @@
+<h2><%= @task.name %></h2>
+<p>Task is delegated to: <%= mail_to @task.user.email %></p>
+
+<h3>Description</h3>
+<p>Priority: <%= @task.priority %></p>
+<p>Description: <%= @task.description %></p>

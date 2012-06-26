@@ -1,0 +1,17 @@
+<h2>Projects list</h2>
+
+<%= link_to "New project", new_project_path %>
+
+<table>
+	<thead>
+		<tr>
+			<th>Project name</th>
+			<th>Manager</th>
+			<th>Is active?</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<%= render :partial => 'project', :collection => @projects %>
+	</tbody>
+</table>

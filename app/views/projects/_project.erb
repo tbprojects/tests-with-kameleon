@@ -1,0 +1,11 @@
+<tr>
+	<td><%= link_to project.name, project_path(project) %></td>
+	<td><%= project.manager.email %></td>
+	<td><%= project.active? ? "Yes" : "No" %></td>
+	<td>
+      <% if project.can_be_managed_by?(current_user) %>
+		<%= link_to "Edit", edit_project_path(project) %>
+		<%= link_to "Remove", project_path(project), :method => "DELETE", :confirm => "Are you sure?" %>
+      <% end %>
+	</td>
+</tr>
