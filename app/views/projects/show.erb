@@ -1,7 +1,16 @@
+<div class="action_links">
+  <%= link_to "New task", new_project_task_path(@project) %>
+  <% if @project.can_be_managed_by?(current_user) %>
+      / <%= link_to "Edit project", edit_project_path(@project) %>
+      / <%= link_to "Remove project", project_path(@project), :method => "DELETE", :confirm => "Are you sure?" %>
+  <% end %>
+</div>
+
 <h2><%= @project.name %></h2>
+
 <p>Project is managed by: <%= mail_to @project.manager.email %></p>
 
-<%= link_to "New task", new_project_task_path(@project) %>
+
 
 <h3>Task list</h3>
 <table>
@@ -9,11 +18,16 @@
 		<tr>
 			<th>Task name</th>
 			<th>Delegated to</th>
+            <th>Status</th>
+            <th>Progress</th>
             <th>Priority</th>
 			<th></th>
 		</tr>
 	</thead>
 	<tbody>
 		<%= render :partial => 'task', :collection => @project.tasks %>
+        <% if @project.tasks.empty? %>
+            <tr><td colspan="6">No results</td></tr>
+        <% end %>
 	</tbody>
 </table>

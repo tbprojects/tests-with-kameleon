@@ -11,7 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120625135152) do
+ActiveRecord::Schema.define(:version => 20120628091505) do
+
+  create_table "comments", :force => true do |t|
+    t.string   "title",            :limit => 50, :default => ""
+    t.text     "comment"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.integer  "user_id"
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
+  end
+
+  add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
+  add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "pictures", :force => true do |t|
     t.string   "picto_file_name"
@@ -25,20 +39,22 @@ ActiveRecord::Schema.define(:version => 20120625135152) do
 
   create_table "projects", :force => true do |t|
     t.string   "name"
-    t.boolean  "active"
+    t.boolean  "active",     :default => true
     t.integer  "manager_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
 
   create_table "tasks", :force => true do |t|
     t.string   "name"
-    t.string   "priority"
+    t.string   "priority",    :default => "Normal"
     t.text     "description"
     t.integer  "project_id"
     t.integer  "user_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.string   "status",      :default => "New"
+    t.string   "progress",    :default => "0%"
   end
 
   create_table "users", :force => true do |t|
