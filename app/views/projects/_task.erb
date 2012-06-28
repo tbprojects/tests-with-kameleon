@@ -7,7 +7,7 @@
 	<td>
       <% if task.can_be_managed_by?(current_user) %>
 		<%= link_to "Edit", edit_project_task_path(@project, task) %>
-		<%= link_to "Remove", project_task_path(@project, task), :method => "DELETE", :confirm => "Are you sure?" %>
+		<%= link_to "Remove", project_task_path(@project, task), :method => :delete, :confirm => "Are you sure?" %>
       <% end %>
 	</td>
 </tr>

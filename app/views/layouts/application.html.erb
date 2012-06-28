@@ -17,7 +17,7 @@
     Menu:
     <%= link_to "Dashboard", root_path %> /
     <%= link_to "Projects", projects_path %> /
-    <%= link_to "Sign out", destroy_user_session_path, :method => "DELETE" %>
+    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
 <% end %>
 <hr>
 <%= yield %>

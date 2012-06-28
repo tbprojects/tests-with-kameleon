@@ -2,7 +2,7 @@
   <%= link_to "New task", new_project_task_path(@project) %>
   <% if @project.can_be_managed_by?(current_user) %>
       / <%= link_to "Edit project", edit_project_path(@project) %>
-      / <%= link_to "Remove project", project_path(@project), :method => "DELETE", :confirm => "Are you sure?" %>
+      / <%= link_to "Remove project", project_path(@project), :method => :delete, :confirm => "Are you sure?" %>
   <% end %>
 </div>
 
