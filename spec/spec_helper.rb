@@ -14,7 +14,7 @@ Spork.prefork do
     config.include FactoryGirl::Syntax::Methods
 
     # We will clean database fore running all specs
-    config.before(:suite) do
+    config.before(:all) do
       DatabaseCleaner.clean_with(:truncation)
     end
   end
