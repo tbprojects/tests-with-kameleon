@@ -1,6 +1,8 @@
-<h2>Projects list</h2>
+<div class="action_links">
+  <%= link_to "New project", new_project_path %>
+</div>
 
-<%= link_to "New project", new_project_path %>
+<h2>Projects list</h2>
 
 <table>
 	<thead>
@@ -13,5 +15,8 @@
 	</thead>
 	<tbody>
 		<%= render :partial => 'project', :collection => @projects %>
+        <% if @projects.empty? %>
+            <tr><td colspan="4">No results</td></tr>
+        <% end %>
 	</tbody>
 </table>

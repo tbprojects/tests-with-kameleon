@@ -6,7 +6,7 @@ class TasksController < ApplicationController
   before_filter :verify_access, :only => [:edit, :update,:destroy]
 
   def index
-  @tasks = @project.tasks
+    @tasks = @project.tasks
   end
 
   def new
@@ -24,6 +24,7 @@ class TasksController < ApplicationController
   end
 
   def edit
+    @task.comments.build(:user => current_user)
   end
 
   def show

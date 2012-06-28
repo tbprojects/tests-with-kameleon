@@ -9,7 +9,7 @@ class ProjectsController < ApplicationController
   end
 
   def new
-    @project = Project.new
+    @project = Project.new(:active => true)
   end
 
   def create

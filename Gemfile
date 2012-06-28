@@ -8,6 +8,7 @@ gem 'json'
 gem 'git'
 
 gem 'jquery-fileupload-rails'
+gem 'acts_as_commentable'
 
 group :assets do
   gem 'sass-rails'

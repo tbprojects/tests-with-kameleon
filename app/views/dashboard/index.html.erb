@@ -3,14 +3,20 @@
 
 <h3>Projects that you manage</h3>
 <ul>
-	<% current_user.manged_projects.each do |project| %>
-		<li><%= link_to project.name, project_path(project) %></li>
-	<% end %>
+  <% current_user.manged_projects.each do |project| %>
+      <li><%= link_to project.name, project_path(project) %></li>
+  <% end %>
+  <% if current_user.manged_projects.empty? %>
+    <li>No results</li>
+  <% end %>
 </ul>
 
 <h3>Your tasks delegated to you</h3>
 <ul>
   <% current_user.tasks.each do |task| %>
       <li><%= link_to "#{task.name} (#{task.project.name})", project_task_path(task.project, task) %></li>
+  <% end %>
+  <% if current_user.tasks.empty? %>
+      <li>No results</li>
   <% end %>
 </ul>

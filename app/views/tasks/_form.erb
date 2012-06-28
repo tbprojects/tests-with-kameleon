@@ -1,9 +1,17 @@
 <%= semantic_form_for [@project, @task] do |form| %>
-    <%= form.inputs do %>
+    <%= form.inputs :name => "Tasks settings" do %>
         <%= form.input :name %>
         <%= form.input :user, :collection => User.all.map{|u|[u.email, u.id]} %>
         <%= form.input :priority, :as => :radio, :collection => Task::PRIORITY_LIST %>
-        <%= form.input :description %>
+        <%= form.input :status, :as => :select, :collection => Task::STATUS_LIST %>
+        <%= form.input :progress, :as => :select, :collection => Task::PROGRESS_LIST %>
+        <%= form.input :description unless @task.persisted? %>
+    <% end %>
+    <%= form.inputs :for => :comments do |f| %>
+        <% if f.object.new_record? %>
+            <%= f.input :comment %>
+            <%= f.input :user_id, :as => :hidden %>
+        <% end %>
     <% end %>
     <%= form.actions %>
 <% end %>

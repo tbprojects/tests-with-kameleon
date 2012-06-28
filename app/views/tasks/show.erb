@@ -1,6 +1,31 @@
+<div class="action_links">
+  <% if @project.can_be_managed_by?(current_user) %>
+      <%= link_to "Edit task", edit_project_task_path(@project, @task) %> /
+      <%= link_to "Remove task", project_task_path(@project, @task), :method => "DELETE", :confirm => "Are you sure?" %>
+  <% end %>
+</div>
+
 <h2><%= @task.name %></h2>
-<p>Task is delegated to: <%= mail_to @task.user.email %></p>
+<ul>
+  <li>Task is delegated to: <%= mail_to @task.user.email %></li>
+  <li>Status: <%= @task.status %></li>
+  <li>Progress: <%= @task.progress %></li>
+  <li>Priority: <%= @task.priority %></li>
+</ul>
 
 <h3>Description</h3>
-<p>Priority: <%= @task.priority %></p>
-<p>Description: <%= @task.description %></p>
+<p><%= @task.description.present? ? @task.description : "No description" %></p>
+
+<h3>Updates</h3>
+<ul>
+<% @task.comments.each do |comment| %>
+    <li>
+      Date: <%= comment.created_at.to_s(:db) %><br/>
+      Author: <%= mail_to comment.user.email %><br/>
+      <%= comment.comment.present? ? comment.comment : "No information" %>
+    </li>    
+<% end %>
+  <% if @task.comments.empty? %>
+      <li>No comments so far</li>
+  <% end %>
+</ul>
