@@ -13,10 +13,10 @@
 
 <h3>Your tasks delegated to you</h3>
 <ul>
-  <% current_user.tasks.each do |task| %>
+  <% current_user.tasks.not_closed.each do |task| %>
       <li><%= link_to "#{task.name} (#{task.project.name})", project_task_path(task.project, task) %></li>
   <% end %>
-  <% if current_user.tasks.empty? %>
+  <% if current_user.tasks.not_closed.empty? %>
       <li>No results</li>
   <% end %>
 </ul>

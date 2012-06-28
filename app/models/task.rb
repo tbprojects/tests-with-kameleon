@@ -12,6 +12,8 @@ class Task < ActiveRecord::Base
   acts_as_commentable
   accepts_nested_attributes_for :comments
 
+  scope :not_closed, where("status is not 'Closed'")
+
   def can_be_managed_by?(user)
     project.manager == user or self.user == user
   end
