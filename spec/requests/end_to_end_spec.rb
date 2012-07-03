@@ -2,12 +2,14 @@ require 'spec_helper'
 
 describe 'Application' do
   before(:all) do
-    create_users_and_sessions({
+    create_users({
       :stewie => {:email => 'stewie.griffin@example.com', :password => 'secret'},
       :chris => {:email => 'chris.griffin@example.com', :password => 'secret'},
       :peter => {:email => 'peter.griffin@example.com', :password => 'secret'}
     })
   end
+
+  before(:each) { create_sessions }
 
   it 'allows users to complete project with many tasks' do
     # creating project
